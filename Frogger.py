@@ -16,53 +16,39 @@ truck1 = drawpad.create_rectangle(0,450,60,480, fill = "yellow")
 truck2 = drawpad.create_rectangle(150,450,210,480, fill = "purple")
 truck3 = drawpad.create_rectangle(300,450,360,480, fill = "yellow")
 truck4 = drawpad.create_rectangle(450,450,510,480, fill = "yellow")
-truck5 = drawpad.create_rectangle(600,450,660,480, fill = "purple")
-truck6 = drawpad.create_rectangle(200,350,260,380, fill = "blue")
-truck7 = drawpad.create_rectangle(350,350,410,380, fill = "red")
-truck8 = drawpad.create_rectangle(500,350,560,380, fill = "black")
-truck9 = drawpad.create_rectangle(650,350,710,380, fill = "black")
-truck10= drawpad.create_rectangle(20,350,80,380, fill = "blue")
 car1 = drawpad.create_rectangle(40,400,80,430, fill = "red")
-car2 = drawpad.create_rectangle(240,400,280,430, fill = "blue")
-car3 = drawpad.create_rectangle(440,400,480,430, fill = "forestgreen")
-car4 = drawpad.create_rectangle(640,400,680,430, fill = "red")
 # first row of logs
-Log1 = drawpad.create_rectangle(0,50,80,90, fill = "brown")
-Log2 = drawpad.create_rectangle(150,50,230,90, fill = "brown")
-Log3 = drawpad.create_rectangle(300,50,380,90, fill = "brown")
-Log4 = drawpad.create_rectangle(450,50,530,90, fill = "brown")
-Log5 = drawpad.create_rectangle(600,50,680,90, fill = "brown")
+Log4 = drawpad.create_rectangle(450,70,530,30, fill = "brown")
+Log5 = drawpad.create_rectangle(600,70,680,30, fill = "brown")
 #second row of logs
-Log6 = drawpad.create_rectangle(0,150,80,190, fill = "brown")
-Log7 = drawpad.create_rectangle(150,150,230,190, fill = "brown")
 Log8 = drawpad.create_rectangle(300,150,380,190, fill = "brown")
 Log9 = drawpad.create_rectangle(450,150,530,190, fill = "brown")
 Log10= drawpad.create_rectangle(600,150,680,190, fill = "brown")
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 player = drawpad.create_oval(350,575,375,600, fill = "lightgreen")
+
+
+
+
+
+
+
+
+
+
+
+collisionlist = [truck1,truck2,truck3,truck4,car1,Log4,Log5,Log8,Log9,Log10,lillypad1,lillypad2,lillypad3,lillypad4,lillypad5,lillypad6,lillypad7,water,player]
+
+animation = [truck1,truck2,truck3,truck4,car1,Log4,Log5,Log8,Log9,Log10,lillypad1,lillypad2,lillypad3,lillypad4,lillypad5,lillypad6,lillypad7,water,player]
+
+
+
+
+
+
+
+
 
 
 
@@ -121,6 +107,7 @@ class myApp(object):
         self.livesTxt.pack()
         drawpad.pack()
         root.bind_all('<Key>', self.key)
+        self.animate()
     
     
     
@@ -240,23 +227,12 @@ class myApp(object):
         global truck2
         global truck3
         global truck4
-        global truck5
-        global truck6
-        global truck7
-        global truck8
-        global truck9
-        global truck10
         global car1
         global car2
         global car3
         global car4
-        global Log1
-        global Log2
-        global Log3
         global Log4
         global Log5
-        global Log6
-        global Log7
         global Log8
         global Log9
         global Log10
@@ -264,10 +240,96 @@ class myApp(object):
         lp1x1, lp1y1, lp1x2, lp1y2 = drawpad.coords(lillypad1)
         lp2x1, lp2y1, lp2x2, lp2y2 = drawpad.coords(lillypad2)
         lp3x1, lp3y1, lp3x2, lp3y2 = drawpad.coords(lillypad3)
-
-
-
-
+        lp4x1, lp4y1, lp4x2, lp4y2 = drawpad.coords(lillypad4)
+        lp5x1, lp5y1, lp5x2, lp5y2 = drawpad.coords(lillypad5)
+        lp6x1, lp6y1, lp6x2, lp6y2 = drawpad.coords(lillypad6)
+        lp7x1, lp7y1, lp7x2, lp7y2 = drawpad.coords(lillypad7)
+        t1x1, t1y1, t1x2, t1y2 = drawpad.coords(truck1)
+        t2x1, t2y1, t2x2, t2y2 = drawpad.coords(truck2)
+        t3x1, t3y1, t3x2, t3y2 = drawpad.coords(truck3)
+        t4x1, t4y1, t4x2, t4y2 = drawpad.coords(truck4)
+        c1x1, c1y1, c1x2, c1y2 = drawpad.coords(car1)
+        l4x1, l4y1, l4x2, l4y2 = drawpad.coords(log4)
+        l5x1, l5y1, l5x2, l5y2 = drawpad.coords(log5)
+        l8x1, l8y1, l8x2, l8y2 = drawpad.coords(log8)
+        l9x1, l9y1, l9x2, l9y2 = drawpad.coords(log9)
+        l10x1, l10y1, l10x2, l10y2 = drawpad.coords(log10)
+        
+        
+        drawpad.move(truck1, 5, 0)
+        if t1x2 > 800:
+            drawpad.move(truck1,-800,0)
+        
+        drawpad.move(truck2, 6, 0)
+        if t2x2 > 800:
+            drawpad.move(truck2, -800,0)
+        
+        drawpad.move(truck3, -5, 0)
+        if t3x1 < 0:
+            drawpad.move(truck3, 800,0)
+        
+        
+        drawpad.move(truck4, 5, 0)
+        if t4x2 > 800:
+            drawpad.move(truck4, -800,0)
+        
+        
+        
+        
+        drawpad.move(log4, -3, 0)
+        
+        
+        drawpad.move(log5, 3 ,0)
+        
+        
+        drawpad.move(log8, 3, 0)
+        
+        
+        drawpad.move(log9, -3, 0)
+        
+        
+        drawpad.move(log10, 3, 0)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        drawpad.after(1, self.animate)
 
 
 
@@ -311,7 +373,8 @@ class myApp(object):
             if x2 < 800:
                 drawpad.move(player,10,0)
         if event.char == " ":
-            drawpad.move(player,0,-80)        
+            if y1 > 0:
+                drawpad.move(player,0,-80)        
         
             
             
