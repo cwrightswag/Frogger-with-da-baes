@@ -28,69 +28,12 @@ log10= drawpad.create_rectangle(600,150,680,190, fill = "brown")
 player = drawpad.create_oval(350,575,375,600, fill = "lightgreen")
 
 
+collisionlist = [truck1,truck2,truck3,truck4,car1,water]
 
-
-
-
-
-
-
-
-
-collisionlist = [truck1,truck2,truck3,truck4,car1,log4,log5,log8,log9,log10,lillypad1,lillypad2,lillypad3,lillypad4,lillypad5,lillypad6,lillypad7,water,player]
-
-animation = [truck1,truck2,truck3,truck4,car1,log4,log5,log8,log9,log10,lillypad1,lillypad2,lillypad3,lillypad4,lillypad5,lillypad6,lillypad7,water,player]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+loglist = [log4, log5, log8, log9, log10]   
 
 # Caden's part
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 class myApp(object):
     def __init__(self, parent):    
         global drawpad
@@ -108,110 +51,26 @@ class myApp(object):
         root.bind_all('<Key>', self.key)
         self.animate()
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    def collisionDect(self):
+        global collisionlist
+        global loglist
+        x1,y1,x2,y2 = drawpad.coords(player)
         
-            
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        
+        for enemy in collisionlist:
+            ex1,ey1,ex2,ey2 = drawpad.coords(enemy)
+            if x1 > ex1 and x1 < ex2 and y1 > ey1 and y1 < ey2:
+                drawpad.move(player, 350 - x1, 575 - y1)   
+
+        if y1 < 800:
+            foundlog = False 
+            for log in loglist:
+                lx1,ly1,lx2,ly2 = drawpad.coords(log)
+                if x1 > lx1 and x1 < lx2 and y1 > ly1 and y1 < ly2:
+                    drawpad.move(player,logdirection,0)
+                    #foundlog = True 
+            #if foundlog == False:
+                #drawpad.move(player, 350 - x1, 575 - y1)
+                #self.lives = self.lives - 1
 
     def animate(self): 
         global player
@@ -299,67 +158,11 @@ class myApp(object):
             
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        self.collisionDect()
         
         
         
         drawpad.after(20, self.animate)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     def key(self,event):
@@ -381,159 +184,7 @@ class myApp(object):
             if y1 > 0:
                 drawpad.move(player,0,-80)        
         
-            
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 app = myApp(root)
 
