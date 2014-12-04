@@ -14,17 +14,16 @@ lillypad6 = drawpad.create_rectangle(610,0,650,30, fill = "DarkGreen")
 lillypad7 = drawpad.create_rectangle(720,0,760,30, fill = "DarkGreen")
 truck1 = drawpad.create_rectangle(0,450,60,480, fill = "yellow")
 truck2 = drawpad.create_rectangle(150,450,210,480, fill = "purple")
-truck3 = drawpad.create_rectangle(300,450,360,480, fill = "yellow")
-truck4 = drawpad.create_rectangle(450,450,510,480, fill = "yellow")
+truck3 = drawpad.create_rectangle(200,350,260,380, fill = "blue")
+truck4 = drawpad.create_rectangle(350,350,410,380, fill = "red")
 car1 = drawpad.create_rectangle(40,400,80,430, fill = "red")
 # first row of logs
-Log4 = drawpad.create_rectangle(450,70,530,30, fill = "brown")
-Log5 = drawpad.create_rectangle(600,70,680,30, fill = "brown")
+log4 = drawpad.create_rectangle(450,110,530,70, fill = "brown")
+log5 = drawpad.create_rectangle(600,70,680,30, fill = "brown")
 #second row of logs
-Log8 = drawpad.create_rectangle(300,150,380,190, fill = "brown")
-Log9 = drawpad.create_rectangle(450,150,530,190, fill = "brown")
-Log10= drawpad.create_rectangle(600,150,680,190, fill = "brown")
- 
+log8 = drawpad.create_rectangle(300,150,380,190, fill = "brown")
+log9 = drawpad.create_rectangle(450,150,530,190, fill = "brown")
+log10= drawpad.create_rectangle(600,150,680,190, fill = "brown")
 
 player = drawpad.create_oval(350,575,375,600, fill = "lightgreen")
 
@@ -38,9 +37,9 @@ player = drawpad.create_oval(350,575,375,600, fill = "lightgreen")
 
 
 
-collisionlist = [truck1,truck2,truck3,truck4,car1,Log4,Log5,Log8,Log9,Log10,lillypad1,lillypad2,lillypad3,lillypad4,lillypad5,lillypad6,lillypad7,water,player]
+collisionlist = [truck1,truck2,truck3,truck4,car1,log4,log5,log8,log9,log10,lillypad1,lillypad2,lillypad3,lillypad4,lillypad5,lillypad6,lillypad7,water,player]
 
-animation = [truck1,truck2,truck3,truck4,car1,Log4,Log5,Log8,Log9,Log10,lillypad1,lillypad2,lillypad3,lillypad4,lillypad5,lillypad6,lillypad7,water,player]
+animation = [truck1,truck2,truck3,truck4,car1,log4,log5,log8,log9,log10,lillypad1,lillypad2,lillypad3,lillypad4,lillypad5,lillypad6,lillypad7,water,player]
 
 
 
@@ -268,27 +267,36 @@ class myApp(object):
         if t3x1 < 0:
             drawpad.move(truck3, 800,0)
         
+        drawpad.move(car1, 20, 0)
+        if c1x1> 800:
+            drawpad.move(car1,-800,0)
         
         drawpad.move(truck4, 5, 0)
         if t4x2 > 800:
             drawpad.move(truck4, -800,0)
         
-        
-        
-        
         drawpad.move(log4, -3, 0)
-        
+        if l4x1 < 0:
+            drawpad.move(log4, 800,0)
         
         drawpad.move(log5, 3 ,0)
-        
+        if l5x2 > 800:
+            drawpad.move(log5,-800,0)
         
         drawpad.move(log8, 3, 0)
-        
+        if l8x2 > 800:
+            drawpad.move(log8, -800,0)
         
         drawpad.move(log9, -3, 0)
-        
+        if l9x1 < 0:
+            drawpad.move(log9, 800,0)
         
         drawpad.move(log10, 3, 0)
+        if l10x2 > 800:
+            drawpad.move(log10,-800,0)
+        if py1 < 0:
+            self.label1.configure(text="YOU WIN GO HOME KID")
+            
         
         
         
@@ -326,10 +334,7 @@ class myApp(object):
         
         
         
-        
-        
-        
-        drawpad.after(1, self.animate)
+        drawpad.after(20, self.animate)
 
 
 
@@ -378,6 +383,89 @@ class myApp(object):
         
             
             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
